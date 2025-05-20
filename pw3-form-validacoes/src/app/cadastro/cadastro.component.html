@@ -1,0 +1,48 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Nome:</label>
+    <input formControlName="nome" />
+
+    @if (formulario.get('nome')?.touched && formulario.get('nome')?.invalid) {
+      <div>
+        @if (formulario.get('nome')?.errors?.['required']){
+          <small>Nome é obrigatorio</small>
+        }
+        @if (formulario.get('nome')?.errors?.['minlenght']){
+          <small>Número minimo de 3 caracteres</small>}
+      </div>
+    }
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input formControlName="email" />
+
+    @if (formulario.get('email')?.touched && formulario.get('email')?.invalid) {
+      <div>
+        @if (formulario.get('email')?.errors?.['email']){
+          <small>E-mail no formato inválido</small>
+        }
+        @if (formulario.get('email')?.errors?.['required']){
+          <small>E-mail é obrigatorio</small>}
+      </div>
+    }
+  </div>
+
+  <div>
+    <label>Idade:</label>
+    <input type="number" formControlName="idade" />
+
+    @if (formulario.get('idade')?.touched && formulario.get('idade')?.invalid) {
+      <div>
+        @if (formulario.get('idade')?.errors?.['required']){
+          <small>Idade é obrigatorio</small>
+        }
+        @if (formulario.get('idade')?.errors?.['minlenght']){
+          <small>Idade minima é de 18 anos</small>}
+      </div>
+    }
+  </div>
+
+  <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+</form>
